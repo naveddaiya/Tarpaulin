@@ -625,6 +625,74 @@ function createParticles() {
     */
 }
 
+// ==================== POPUP FORM FUNCTIONALITY ====================
+const popupOverlay = document.getElementById('popupOverlay');
+const popupClose = document.getElementById('popupClose');
+const popupForm = document.getElementById('popupForm');
+
+// Show popup after 3 seconds
+function showPopup() {
+    setTimeout(() => {
+        if (!sessionStorage.getItem('popupShown')) {
+            popupOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }, 3000);
+}
+
+// Close popup
+function closePopup() {
+    popupOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+    sessionStorage.setItem('popupShown', 'true');
+}
+
+// Close popup on close button click
+if (popupClose) {
+    popupClose.addEventListener('click', closePopup);
+}
+
+// Close popup on overlay click
+if (popupOverlay) {
+    popupOverlay.addEventListener('click', (e) => {
+        if (e.target === popupOverlay) {
+            closePopup();
+        }
+    });
+}
+
+// Close popup on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && popupOverlay.classList.contains('active')) {
+        closePopup();
+    }
+});
+
+// Handle popup form submission
+if (popupForm) {
+    popupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(popupForm);
+        const name = formData.get('name');
+        const phone = formData.get('phone');
+        const product = formData.get('product');
+
+        // Show success notification
+        showNotification(
+            `Thank you ${name}! We'll contact you soon about ${popupForm.querySelector(`option[value="${product}"]`)?.textContent || 'your interest'}.`,
+            'success'
+        );
+
+        // Close popup and reset form
+        closePopup();
+        popupForm.reset();
+
+        // You can add your API call here to save the data
+        console.log('Form submitted:', { name, phone, product });
+    });
+}
+
 // ==================== INITIALIZE ====================
 document.addEventListener('DOMContentLoaded', () => {
     console.log('%c✅ Website initialized successfully!', 'color: #2c9c93; font-weight: bold;');
@@ -649,6 +717,9 @@ document.addEventListener('DOMContentLoaded', () => {
             element.classList.add('aos-animate');
         }
     });
+
+    // Show popup form after delay
+    showPopup();
 });
 
 // ==================== VISIBILITY CHANGE ====================

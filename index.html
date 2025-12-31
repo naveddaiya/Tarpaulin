@@ -532,9 +532,67 @@
     </footer>
 
     <!-- Scroll to Top Button -->
-    <button class="scroll-top" id="scrollTop">
-        <i class="fas fa-arrow-up"></i>
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
+
+    <!-- Popup Form Modal -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-modal">
+            <button class="popup-close" id="popupClose" aria-label="Close popup">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+            <div class="popup-content">
+                <div class="popup-header">
+                    <div class="popup-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h2>Get Special Offer!</h2>
+                    <p>Fill in your details to receive exclusive deals on our premium tarpaulin products</p>
+                </div>
+                <form class="popup-form" id="popupForm">
+                    <div class="popup-form-group">
+                        <label for="popup-name" class="sr-only">Your Name</label>
+                        <div class="popup-input-wrapper">
+                            <i class="fas fa-user" aria-hidden="true"></i>
+                            <input type="text" id="popup-name" name="name" placeholder="Your Name" required aria-label="Your Name">
+                        </div>
+                    </div>
+                    <div class="popup-form-group">
+                        <label for="popup-phone" class="sr-only">Phone Number</label>
+                        <div class="popup-input-wrapper">
+                            <i class="fas fa-phone" aria-hidden="true"></i>
+                            <input type="tel" id="popup-phone" name="phone" placeholder="Phone Number" required aria-label="Phone Number">
+                        </div>
+                    </div>
+                    <div class="popup-form-group">
+                        <label for="popup-product" class="sr-only">Product Interest</label>
+                        <div class="popup-input-wrapper">
+                            <i class="fas fa-box" aria-hidden="true"></i>
+                            <select id="popup-product" name="product" required aria-label="Product Interest">
+                                <option value="">Select Product Interest</option>
+                                <option value="truck-covers">PVC Truck Covers</option>
+                                <option value="canvas">Canvas Tarpaulin</option>
+                                <option value="awnings">Window Awnings</option>
+                                <option value="fish-tanks">Fish Farming Tanks</option>
+                                <option value="seat-belt">Seat Belt Fabrics</option>
+                                <option value="hdpe">HDPE Tarpaulin</option>
+                                <option value="pond-liners">HDPE Pond Liners</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="popup-submit-btn" aria-label="Get Special Offer">
+                        <span>Get Special Offer</span>
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </form>
+                <div class="popup-footer">
+                    <i class="fas fa-lock"></i>
+                    <span>Your information is safe with us</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
